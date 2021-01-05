@@ -1,5 +1,4 @@
-# Basketball-Game
-Basketball Game vs CPU
+# Basketball-Game vs CPU
 
 # AI Function(Eng)
 1. The default shot probability for the computer is as follows: 2-point shots (50%) 3-point shots (33%)
@@ -8,7 +7,7 @@ Basketball Game vs CPU
 
 3. If the computer loses more than 10 points, the shot probability is increased to 70 percent and 43 percent, respectively.
 
-4. Conversely, if the computer is winning by more than six points, the shot probability is reduced to 40% and 28%, respectively.
+4. Conversely, if the computer is winning by more than 6 points, the shot probability is reduced to 40% and 28%, respectively.
 
 5. If the computer is winning by more than 10 points, the shot probability is reduced to 30% and 23%, respectively.
 
