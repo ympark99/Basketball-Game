@@ -71,50 +71,61 @@ function updateAI(){
 }
 
 function showText(s){
-    var textElem = document.getElementById('text');
-    textElem.innerHTML = s;
+    var $textElem = $('#text');
+    $textElem.fadeOut(300, function(){
+        $textElem.html(s);
+        $textElem.fadeIn(100);
+    });
 }
 
 function updateComputerScore(score){
-    computer.score += score;
-    var comScoreElem = document.getElementById('computer-score');   
-    comScoreElem.innerHTML = computer.score; 
+    computer.score += score; 
+    var $comScoreElem = $('#computer-score');
+    $comScoreElem.animateNumber({number: computer.score});
 }
 
 function updateUserScore(score){
     user.score += score;
-    var userScoreElem = document.getElementById('user-score'); 
-    userScoreElem.innerHTML = user.score; 
+    var $userScoreElem = $('#user-score');
+    $userScoreElem.animateNumber({number: user.score});
 }
 
 function disableComputerButtons(flag){
-    var computerButtons = document.getElementsByClassName('btn-computer');
-    
-    for(var i=0;i<computerButtons.length; i++){
-        computerButtons[i].disabled = flag;
-    }    
+    $('.btn-computer').prop('disabled',flag);   
 }
 
-function disableUserButtons(flag){
-    var userButtons = document.getElementsByClassName('btn-user');
-    
-    for(var i=0;i<userButtons.length; i++){
-        userButtons[i].disabled = flag;
-    }    
+function disableUserButtons(flag){  
+    $('.btn-user').prop('disabled',flag);
 }
 
 function calShotsLeft(){
-    var shotsLeftElem = document.getElementById('shots-left');
-
     game.shotsLeft--;
-    shotsLeftElem.innerHTML = game.shotsLeft;
+    var $shotsLeftElem = $('#shots-left');
+    $shotsLeftElem.html(game.shotsLeft);
 
     if(game.shotsLeft === 0){
         if(user.score > computer.score) showText('승리!!');
         else if(user.score < computer.score) showText('패배..');
         else showText('동점');
-    
+
         disableComputerButtons(true);
         disableUserButtons(true);
     }
 }
+
+$(function(){
+    showText(3);
+
+    setTimeout(function(){
+        showText(2);
+    
+        setTimeout(function(){
+            showText(1);
+
+            setTimeout(function(){
+                showText('컴퓨터부터 시작합니다!');
+                disableComputerButtons(false);
+            },1000);
+        },1000);
+    },1000);
+});
